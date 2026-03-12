@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(sudo npm:*)",
+      "Bash(npm cache:*)",
+      "Bash(npm run:*)",
+      "Bash(git init:*)"
+    ]
+  }
+}

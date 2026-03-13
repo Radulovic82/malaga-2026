@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCENh9X9RgIi4bJGxdiGyFWsqv_AmS_nd0",
-  authDomain: "malaga-2026.firebaseapp.com",
-  projectId: "malaga-2026",
-  storageBucket: "malaga-2026.firebasestorage.app",
-  messagingSenderId: "413906201744",
-  appId: "1:413906201744:web:9e66b2446f2de1e279bc15"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

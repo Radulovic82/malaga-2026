@@ -8,6 +8,14 @@ export const DAYS = [
     color: "#e84b2e",
     route: ["Málaga", "Frigiliana", "Nerja"],
     coordinates: { lat: 36.7491, lng: -3.8784 },
+    driving: {
+      segments: [
+        { from: "Málaga Airport", to: "Frigiliana", km: 52, time: "55 min" },
+        { from: "Frigiliana", to: "Nerja", km: 8, time: "15 min" }
+      ],
+      totalKm: 60,
+      totalTime: "1h 10min"
+    },
     accommodation: {
       name: "Hotel Mena Plaza",
       location: "Nerja",
@@ -30,14 +38,18 @@ export const DAYS = [
         emoji: "🌅",
         description: "Iconic clifftop promenade with breathtaking Mediterranean views — perfect sunset spot!",
         category: "Viewpoint",
-        mustBook: false
+        mustBook: false,
+        duration: "30–45 min",
+        mapsLink: "https://maps.google.com/?q=Balcón+de+Europa+Nerja"
       },
       {
         name: "Frigiliana",
         emoji: "🏘️",
         description: "One of Spain's most beautiful white villages (pueblos blancos). The Moorish Barrio Alto is a maze of flower-lined alleys.",
         category: "Village",
-        mustBook: false
+        mustBook: false,
+        duration: "2–3 hrs",
+        mapsLink: "https://maps.google.com/?q=Frigiliana+Spain"
       },
       {
         name: "Cueva de Nerja",
@@ -45,58 +57,42 @@ export const DAYS = [
         description: "Famous prehistoric caves with giant stalactites and cave paintings, 3 km from the village.",
         category: "Attraction",
         mustBook: true,
-        bookingTip: "Book online to skip queues"
+        bookingTip: "Book online to skip queues",
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Cueva+de+Nerja"
       },
       {
         name: "Playa de Burriana",
         emoji: "🏖️",
         description: "Nerja's best beach — wide sandy bay with good restaurants. Perfect late afternoon swim.",
         category: "Beach",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–3 hrs",
+        mapsLink: "https://maps.google.com/?q=Playa+de+Burriana+Nerja"
       }
     ],
     food: [
       {
         name: "Espetos de sardinas",
         type: "Local specialty",
-        description: "Grilled sardines on bamboo skewers — only authentic at beach chiringuitos. Don't miss them!"
-      },
-      {
-        name: "Gambas al pil-pil",
-        type: "Seafood",
-        description: "Garlic prawns sizzling in olive oil. Order at any bar near Balcón de Europa."
-      },
-      {
-        name: "Frigiliana honey & wine",
-        type: "Local products",
-        description: "The village is famous for artisan honey and sweet wines. Pick some up at village shops."
+        description: "Grilled sardines on bamboo skewers — only authentic at beach chiringuitos. Don't miss them!",
+        duration: "~1 hr"
       },
       {
         name: "El Pulguilla",
         type: "Restaurant",
-        description: "Iconic local spot, just steps from Balcón de Europa. Always busy — worth the wait."
+        description: "Iconic local spot, just steps from Balcón de Europa. Always busy — worth the wait.",
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=El+Pulguilla+Nerja"
+      },
+      {
+        name: "Frigiliana village tapas",
+        type: "Tapas bars",
+        description: "Stop for a drink and free tapas in the village square before driving to Nerja.",
+        duration: "~45 min",
+        mapsLink: "https://maps.google.com/?q=Frigiliana+tapas+bars"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "Coastal N-340 Stretch",
-          distance: "15 km one way",
-          difficulty: "easy",
-          description: "Scenic coastal ride from Nerja towards Almuñécar. Mostly flat along the coast with sea views.",
-          tag: "Road"
-        },
-        {
-          name: "Nerja to Frigiliana Climb",
-          distance: "8 km",
-          difficulty: "hard",
-          description: "Challenging climb up to the white village (280m elevation gain). Rewarded with stunning panoramic views.",
-          tag: "Climb"
-        }
-      ],
-      rentalNote: "Bikes available from Nerja Bikes or Moto Rent near town center"
-    }
+    ]
   },
   {
     id: 2,
@@ -107,6 +103,15 @@ export const DAYS = [
     color: "#c1440e",
     route: ["Nerja", "La Herradura", "Granada", "Loja"],
     coordinates: { lat: 37.1666, lng: -4.1497 },
+    driving: {
+      segments: [
+        { from: "Nerja", to: "La Herradura (Herradura Farm)", km: 20, time: "25 min" },
+        { from: "La Herradura", to: "Granada", km: 70, time: "1h 10min" },
+        { from: "Granada", to: "Hotel El Mirador (Loja)", km: 55, time: "45 min" }
+      ],
+      totalKm: 145,
+      totalTime: "2h 20min"
+    },
     accommodation: {
       name: "Hotel El Mirador",
       location: "Loja (30 min from Granada)",
@@ -151,7 +156,9 @@ export const DAYS = [
         description: "Europe's ONLY coffee plantation! Morning tour at 10:00 (1h 10min). Unique experience — a must-do on the way to Granada.",
         category: "Unique",
         mustBook: true,
-        bookingTip: "Book the 10:00 slot — it's perfectly on the way from Nerja to Granada"
+        bookingTip: "Book the 10:00 slot — it's perfectly on the way from Nerja to Granada",
+        duration: "~1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Herradura+Farm+La+Herradura+Granada"
       },
       {
         name: "La Alhambra",
@@ -159,72 +166,61 @@ export const DAYS = [
         description: "UNESCO World Heritage marvel — the pinnacle of Moorish architecture. Most visited monument in Spain. Don't miss the Nasrid Palaces.",
         category: "Monument",
         mustBook: true,
-        bookingTip: "BOOK WEEKS IN ADVANCE at alhambra-patronato.es — tickets sell out fast!"
+        bookingTip: "BOOK WEEKS IN ADVANCE at alhambra-patronato.es — tickets sell out fast!",
+        duration: "3–4 hrs",
+        mapsLink: "https://maps.google.com/?q=Alhambra+Granada"
       },
       {
         name: "Albaicín Quarter",
         emoji: "🕌",
         description: "Ancient Moorish neighbourhood on the hill opposite the Alhambra. Mirador de San Nicolás for the iconic sunset Alhambra view.",
         category: "Neighbourhood",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Albaicin+Granada"
       },
       {
         name: "Sacromonte Caves",
         emoji: "🎸",
         description: "Gypsy cave neighbourhood famous for flamenco. Authentic zambra shows in cave venues — magical at night.",
         category: "Culture",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–2 hrs (evening)",
+        mapsLink: "https://maps.google.com/?q=Sacromonte+Granada"
       },
       {
         name: "Granada Cathedral",
         emoji: "⛪",
         description: "Impressive Renaissance cathedral. The Royal Chapel next door has the tombs of Ferdinand and Isabella.",
         category: "Monument",
-        mustBook: false
+        mustBook: false,
+        duration: "~1 hr",
+        mapsLink: "https://maps.google.com/?q=Granada+Cathedral+Spain"
       }
     ],
     food: [
       {
-        name: "FREE tapas with every drink",
+        name: "Free tapas culture — bar hop Plaza Nueva",
         type: "Granada tradition",
-        description: "Granada is unique in Spain — every drink comes with a free tapa! Bar hop around Calle Navas and Plaza Nueva."
-      },
-      {
-        name: "Jamón ibérico",
-        type: "Cured ham",
-        description: "Granada province produces excellent mountain-cured ham. Try at Los Diamantes bar near the Cathedral."
-      },
-      {
-        name: "Piononos de Santa Fe",
-        type: "Local pastry",
-        description: "Tiny rolls of sponge cake soaked in sweet syrup — a Granada original named after Pope Pius IX."
+        description: "Granada is unique in Spain — every drink comes with a free tapa! Bar hop around Calle Navas and Plaza Nueva.",
+        duration: "1–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Plaza+Nueva+Granada"
       },
       {
         name: "Bar Los Diamantes",
         type: "Bar",
-        description: "Granada institution — standing room only, chalk menu, legendary free tapas with every drink."
+        description: "Granada institution — standing room only, chalk menu, legendary free tapas with every drink. Try the seafood tapas.",
+        duration: "~1 hr",
+        mapsLink: "https://maps.google.com/?q=Bar+Los+Diamantes+Granada"
+      },
+      {
+        name: "Piononos — Pastelería López Mezquita",
+        type: "Pastry shop",
+        description: "Tiny rolls of sponge cake soaked in sweet syrup — a Granada original. Pick some up at this legendary pastry shop.",
+        duration: "~20 min",
+        mapsLink: "https://maps.google.com/?q=Pasteleria+Lopez+Mezquita+Granada"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "Vega de Granada Flatlands",
-          distance: "20–40 km",
-          difficulty: "easy",
-          description: "Flat farmland cycling on the fertile plain south of Granada. Follow the Acequia Gorda irrigation canal route.",
-          tag: "Road/Path"
-        },
-        {
-          name: "Alhambra Forest Loop",
-          distance: "10 km",
-          difficulty: "moderate",
-          description: "Cycle through wooded hills of the Alhambra complex. Scenic forest roads with city views.",
-          tag: "Forest"
-        }
-      ],
-      rentalNote: "Bike rentals at BiciGranada or near Plaza Nueva in the city center"
-    }
+    ]
   },
   {
     id: 3,
@@ -235,6 +231,13 @@ export const DAYS = [
     color: "#8B4513",
     route: ["Granada", "Córdoba"],
     coordinates: { lat: 37.8882, lng: -4.7794 },
+    driving: {
+      segments: [
+        { from: "Loja (Hotel El Mirador)", to: "Córdoba", km: 145, time: "1h 30min" }
+      ],
+      totalKm: 145,
+      totalTime: "1h 30min"
+    },
     accommodation: {
       name: "Hotel Marisa",
       location: "Córdoba Center",
@@ -272,79 +275,70 @@ export const DAYS = [
         description: "One of the world's greatest architectural achievements — a Gothic cathedral built inside a breathtaking Moorish mosque. Unmissable.",
         category: "Monument",
         mustBook: true,
-        bookingTip: "Book morning entry online at catedraldecordoba.es"
+        bookingTip: "Book morning entry online at catedraldecordoba.es",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Mezquita+Catedral+Cordoba"
       },
       {
         name: "Judería (Jewish Quarter)",
         emoji: "⭐",
         description: "Labyrinth of medieval streets, whitewashed walls, and flower-filled alleyways. The 14th-century synagogue is one of only three remaining in Spain.",
         category: "Neighbourhood",
-        mustBook: false
+        mustBook: false,
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Juderia+Cordoba+Spain"
       },
       {
         name: "Alcázar de los Reyes Cristianos",
         emoji: "🏰",
-        description: "Medieval fortress with gorgeous Moorish-inspired gardens and reflective pools. Columbus presented his New World plans to the Catholic Monarchs here.",
+        description: "Medieval fortress with gorgeous Moorish-inspired gardens and reflective pools. Columbus presented his New World plans here.",
         category: "Monument",
-        mustBook: false
+        mustBook: false,
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Alcazar+de+los+Reyes+Cristianos+Cordoba"
       },
       {
         name: "Patios de Córdoba",
         emoji: "🌸",
         description: "Córdoba's famous flower-filled courtyards are especially beautiful in spring. Many private homes open them — ask at the tourist office.",
         category: "Culture",
-        mustBook: false
+        mustBook: false,
+        duration: "~1 hr",
+        mapsLink: "https://maps.google.com/?q=Patios+de+Cordoba"
       },
       {
         name: "Puente Romano",
         emoji: "🌉",
         description: "Ancient Roman bridge spanning the Guadalquivir. Best at sunset with the Mezquita lit up behind you.",
         category: "Monument",
-        mustBook: false
+        mustBook: false,
+        duration: "~30 min",
+        mapsLink: "https://maps.google.com/?q=Puente+Romano+Cordoba"
       }
     ],
     food: [
       {
-        name: "Salmorejo",
-        type: "Córdoba specialty",
-        description: "Córdoba's answer to gazpacho — richer, creamier cold tomato soup topped with hard-boiled egg and jamón. Order it everywhere."
-      },
-      {
-        name: "Rabo de toro",
-        type: "Traditional",
-        description: "Slow-braised oxtail stew with red wine — a Córdoba institution. Deeper and richer than anywhere else."
-      },
-      {
-        name: "Flamenquín",
-        type: "Córdoba invention",
-        description: "Ham wrapped in pork loin, breaded and fried. Córdoba claims to have invented it, and they do it best."
-      },
-      {
-        name: "Taberna Luque",
+        name: "Taberna Casa Pepe de la Judería",
         type: "Traditional tavern",
-        description: "Wine barrels stacked to the ceiling, locals only, excellent food at fair prices. Near the Mezquita."
+        description: "Legendary Córdoba tavern inside the Jewish Quarter. Order salmorejo, rabo de toro and flamenquín — all house specialties.",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Taberna+Casa+Pepe+de+la+Juderia+Cordoba"
+      },
+      {
+        name: "Bodega Guzmán",
+        type: "Wine bar",
+        description: "One of Córdoba's oldest bodegas — wine barrels stacked to the ceiling, locals only, excellent tapas.",
+        duration: "~1 hr",
+        mapsLink: "https://maps.google.com/?q=Bodega+Guzman+Cordoba"
+      },
+      {
+        name: "Mercado Victoria",
+        type: "Food market",
+        description: "Beautifully restored 19th-century market with gourmet stalls — a great lunch stop with salmorejo and flamenquín.",
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Mercado+Victoria+Cordoba"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "Guadalquivir Riverside Path",
-          distance: "12 km round trip",
-          difficulty: "easy",
-          description: "Flat cycling alongside the river from the Roman Bridge through parkland. Perfect morning or evening ride.",
-          tag: "Path"
-        },
-        {
-          name: "Via Verde de la Subbética",
-          distance: "55 km total (do any section)",
-          difficulty: "easy",
-          description: "Old railway converted to a greenway through olive groves and limestone hills. Completely flat — one of the best vías verdes in Andalusia.",
-          tag: "Greenway"
-        }
-      ],
-      rentalNote: "Córdoba is very flat — ideal for cycling. Rentals at Alquiler de Bicicletas near the Mezquita."
-    }
+    ]
   },
   {
     id: 4,
@@ -355,6 +349,13 @@ export const DAYS = [
     color: "#e8a020",
     route: ["Córdoba", "Sevilla"],
     coordinates: { lat: 37.3891, lng: -6.0331 },
+    driving: {
+      segments: [
+        { from: "Córdoba", to: "Sevilla (Camas)", km: 145, time: "1h 30min" }
+      ],
+      totalKm: 145,
+      totalTime: "1h 30min"
+    },
     accommodation: {
       name: "IBERflat Vega de Triana",
       location: "Camas (15 min drive to Sevilla center)",
@@ -389,89 +390,73 @@ export const DAYS = [
       {
         name: "Real Alcázar",
         emoji: "🏯",
-        description: "Stunning royal palace still in official use — oldest royal residence in Europe. Mix of Mudéjar, Gothic, and Renaissance. Used as Game of Thrones filming location!",
+        description: "Stunning royal palace still in official use — oldest royal residence in Europe. Mix of Mudéjar, Gothic, and Renaissance. Game of Thrones filming location!",
         category: "Monument",
         mustBook: true,
-        bookingTip: "Book online — queues without a ticket are very long"
+        bookingTip: "Book online — queues without a ticket are very long",
+        duration: "2–3 hrs",
+        mapsLink: "https://maps.google.com/?q=Real+Alcazar+Sevilla"
       },
       {
         name: "Sevilla Cathedral & La Giralda",
         emoji: "⛪",
-        description: "The world's largest Gothic cathedral. Climb La Giralda tower via a ramp (no stairs!) for sweeping city views. Columbus is buried inside.",
+        description: "The world's largest Gothic cathedral. Climb La Giralda tower via a ramp for sweeping city views. Columbus is buried inside.",
         category: "Monument",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Catedral+de+Sevilla"
       },
       {
         name: "Barrio de Santa Cruz",
         emoji: "🍊",
         description: "Magical old Jewish quarter with orange-tree lined alleys, plazas, and tapas bars. Get intentionally lost.",
         category: "Neighbourhood",
-        mustBook: false
+        mustBook: false,
+        duration: "1–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Barrio+de+Santa+Cruz+Sevilla"
       },
       {
         name: "Triana — YOUR neighbourhood!",
         emoji: "🎭",
-        description: "Authentic working-class district that resisted gentrification. Home of Sevilla's flamenco roots, ceramics workshops, and the best local tapas bars. Right outside your door!",
+        description: "Authentic working-class district, home of Sevilla's flamenco roots, ceramics workshops, and the best local tapas bars. Right outside your door!",
         category: "Neighbourhood",
-        mustBook: false
+        mustBook: false,
+        duration: "2–3 hrs",
+        mapsLink: "https://maps.google.com/?q=Triana+Sevilla"
       },
       {
         name: "Plaza de España",
         emoji: "✨",
-        description: "Magnificent semicircular plaza from the 1929 Expo. Ceramic tile maps of every Spanish province. Boat rides on the canal. One of Spain's most photogenic spots.",
+        description: "Magnificent semicircular plaza from the 1929 Expo. Ceramic tile maps of every Spanish province. Boat rides on the canal.",
         category: "Monument",
-        mustBook: false
+        mustBook: false,
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Plaza+de+España+Sevilla"
       }
     ],
     food: [
       {
-        name: "Tapas in Triana",
-        type: "Neighbourhood bars",
-        description: "Bar El Jamón, Casa Cuesta, Bar Bistec — the real Triana experience is right outside your door. Stand at the bar, order local wines and montaditos."
-      },
-      {
-        name: "Pescaíto frito",
-        type: "Fried seafood",
-        description: "Mixed fried seafood in a paper cone — squid, prawns, anchovies, cod. The Andalusian street food staple."
-      },
-      {
         name: "Mercado de Triana",
         type: "Market",
-        description: "Triana's covered market right next to your apartment! Fresh fish, jamón, cheese, wine. Great tapas bars inside."
+        description: "Triana's covered market right next to your apartment! Fresh fish, jamón, cheese, wine. Great tapas bars inside.",
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Mercado+de+Triana+Sevilla"
       },
       {
-        name: "Gazpacho & Salmorejo",
-        type: "Cold soups",
-        description: "March in Sevilla is warm (18-22°C). Cold soups are on every menu and excellent here."
+        name: "Bar El Jamón",
+        type: "Tapas bar",
+        description: "Classic Triana tapas bar — locals only, great montaditos and wine. Right near your apartment.",
+        duration: "~1 hr",
+        mapsLink: "https://maps.google.com/?q=Bar+El+Jamon+Triana+Sevilla"
+      },
+      {
+        name: "Casa Cuesta",
+        type: "Traditional restaurant",
+        description: "Beloved Triana institution since 1880. Excellent traditional Sevillano food and local wines.",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Casa+Cuesta+Triana+Sevilla"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "Triana Bridge to City Center",
-          distance: "5 km loop",
-          difficulty: "easy",
-          description: "Cross the Triana bridge and cycle through the historic center. Sevilla has 180 km of dedicated bike lanes — Spain's best cycling city!",
-          tag: "City"
-        },
-        {
-          name: "Guadalquivir Riverside North",
-          distance: "20 km round trip",
-          difficulty: "easy",
-          description: "Flat riverside cycling north from Triana bridge through parkland past Torre del Oro.",
-          tag: "River"
-        },
-        {
-          name: "Parque María Luisa Loop",
-          distance: "8 km",
-          difficulty: "easy",
-          description: "Cycle through the beautiful city park past Plaza de España. Combine with a coffee stop at the park café.",
-          tag: "Park"
-        }
-      ],
-      rentalNote: "Sevici public bikes available across the city (day pass). Or rent from Sevilla Cycling or Orange City Bikes near center."
-    }
+    ]
   },
   {
     id: 5,
@@ -484,6 +469,14 @@ export const DAYS = [
     coordinates: { lat: 37.3891, lng: -6.0331 },
     accommodation: null,
     sameAccommodationAs: 4,
+    driving: {
+      segments: [
+        { from: "Sevilla", to: "Italica (optional day trip)", km: 9, time: "15 min" }
+      ],
+      totalKm: 18,
+      totalTime: "~30 min (round trip, if going to Italica)",
+      optional: true
+    },
     reminders: [],
     attractions: [
       {
@@ -491,14 +484,18 @@ export const DAYS = [
         emoji: "🍄",
         description: "The world's largest wooden structure — giant mushroom-shaped walkway with rooftop promenade and panoramic city views. Best at sunset.",
         category: "Architecture",
-        mustBook: false
+        mustBook: false,
+        duration: "45 min–1 hr",
+        mapsLink: "https://maps.google.com/?q=Metropol+Parasol+Sevilla"
       },
       {
         name: "Casa de Pilatos",
         emoji: "🎨",
         description: "Exquisite Renaissance palace with Mudéjar tilework, Roman statues, and a gorgeous patio garden. Less crowded than the Alcázar.",
         category: "Monument",
-        mustBook: false
+        mustBook: false,
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Casa+de+Pilatos+Sevilla"
       },
       {
         name: "Flamenco Show",
@@ -506,58 +503,43 @@ export const DAYS = [
         description: "Sevilla is the birthplace of flamenco. Museum of Flamenco (Museo del Baile Flamenco) or Tablao El Arenal for an authentic intimate show.",
         category: "Culture",
         mustBook: true,
-        bookingTip: "Book evening show in advance — intimate venues fill up"
+        bookingTip: "Book evening show in advance — intimate venues fill up",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Museo+del+Baile+Flamenco+Sevilla"
       },
       {
         name: "Italica (Day Trip)",
         emoji: "🏛️",
-        description: "Ancient Roman city 9 km from Sevilla — birthplace of emperors Trajan and Hadrian. Huge amphitheatre. Game of Thrones filmed here!",
+        description: "Ancient Roman city 9 km from Sevilla — birthplace of emperors Trajan and Hadrian. Huge amphitheatre. Game of Thrones filming location!",
         category: "Day trip",
-        mustBook: false
+        mustBook: false,
+        duration: "2–2.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Italica+Roman+Ruins+Santiponce+Sevilla"
       }
     ],
     food: [
       {
         name: "El Rinconcillo",
         type: "Historic bar",
-        description: "Oldest bar in Sevilla (opened 1670!). Chalk bill on the counter. Order espinacas con garbanzos — a Sevilla classic."
+        description: "Oldest bar in Sevilla (opened 1670!). Chalk bill on the counter. Order espinacas con garbanzos — a Sevilla classic.",
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=El+Rinconcillo+Sevilla"
       },
       {
         name: "Bodega Santa Cruz (Las Columnas)",
         type: "Standing bar",
-        description: "No seats, chalk menu, perpetually busy — classic Sevillano experience in Santa Cruz quarter."
+        description: "No seats, chalk menu, perpetually busy — the classic Sevillano experience in Santa Cruz quarter.",
+        duration: "~45 min",
+        mapsLink: "https://maps.google.com/?q=Bodega+Santa+Cruz+Las+Columnas+Sevilla"
       },
       {
-        name: "Vermut in Triana",
-        type: "Local tradition",
-        description: "Pre-lunch vermouth is a ritual in Triana. Try Bar Altozano on the riverside."
-      },
-      {
-        name: "Churros con chocolate",
-        type: "Breakfast",
-        description: "The Sevillano way to start the day. Bar El Comercio near the Cathedral is legendary for them."
+        name: "Bar Altozano",
+        type: "Vermut bar",
+        description: "Pre-lunch vermouth on the Triana riverside — best views of the Torre del Oro across the water.",
+        duration: "~45 min",
+        mapsLink: "https://maps.google.com/?q=Bar+Altozano+Triana+Sevilla"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "Sevilla to Italica",
-          distance: "18 km round trip",
-          difficulty: "easy",
-          description: "Cycle via the riverside path and parkways to ancient Roman ruins. Mostly flat all the way.",
-          tag: "Historical"
-        },
-        {
-          name: "Full City Exploration",
-          distance: "25 km",
-          difficulty: "easy",
-          description: "Use the 180 km of dedicated bike lanes to link all major sights. Sevilla is completely flat — perfect cycling city!",
-          tag: "City tour"
-        }
-      ],
-      rentalNote: "Sevici day pass available from any of the 250+ docking stations across the city."
-    }
+    ]
   },
   {
     id: 6,
@@ -568,6 +550,15 @@ export const DAYS = [
     color: "#228B22",
     route: ["Sevilla", "Sierra de Grazalema", "Setenil de las Bodegas", "Ronda"],
     coordinates: { lat: 36.7462, lng: -5.1610 },
+    driving: {
+      segments: [
+        { from: "Sevilla (Camas)", to: "Sierra de Grazalema", km: 140, time: "1h 45min" },
+        { from: "Grazalema", to: "Setenil de las Bodegas", km: 25, time: "35 min" },
+        { from: "Setenil de las Bodegas", to: "Ronda", km: 28, time: "40 min" }
+      ],
+      totalKm: 193,
+      totalTime: "3h 00min"
+    },
     accommodation: {
       name: "Hotel San Francisco",
       location: "Ronda",
@@ -590,86 +581,70 @@ export const DAYS = [
         emoji: "🌉",
         description: "Ronda's legendary bridge spanning a 120-metre deep gorge. The view from El Tajo trail below is even more dramatic than from the bridge.",
         category: "Monument",
-        mustBook: false
+        mustBook: false,
+        duration: "30–45 min",
+        mapsLink: "https://maps.google.com/?q=Puente+Nuevo+Ronda"
       },
       {
         name: "El Tajo Gorge Trail",
         emoji: "🏔️",
         description: "Descend into the gorge bottom via Cueva del Gato path for the jaw-dropping upward view of Puente Nuevo. About 45 min return.",
         category: "Nature",
-        mustBook: false
+        mustBook: false,
+        duration: "~1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=El+Tajo+Gorge+Ronda"
       },
       {
         name: "Setenil de las Bodegas",
         emoji: "🪨",
         description: "Extraordinary village where houses are literally built INTO overhanging rock cliffs. The main street runs under a roof of solid rock. 20 min from Ronda.",
         category: "Village",
-        mustBook: false
+        mustBook: false,
+        duration: "1–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Setenil+de+las+Bodegas"
       },
       {
         name: "Sierra de Grazalema",
         emoji: "🏞️",
-        description: "One of Andalusia's most dramatic natural parks — limestone peaks, vulture colonies, and traditional white villages. Pass through on the way.",
+        description: "One of Andalusia's most dramatic natural parks — limestone peaks, vulture colonies, and traditional white villages. Stop in Grazalema village.",
         category: "Nature",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Grazalema+village+Spain"
       },
       {
         name: "Plaza de Toros de Ronda",
         emoji: "🐂",
         description: "One of Spain's oldest and most beautiful bullrings (1785). Visit the museum to understand the history.",
         category: "Cultural",
-        mustBook: false
+        mustBook: false,
+        duration: "~1 hr",
+        mapsLink: "https://maps.google.com/?q=Plaza+de+Toros+de+Ronda"
       }
     ],
     food: [
       {
-        name: "Rabo de toro rondeño",
-        type: "Mountain specialty",
-        description: "Ronda's version of oxtail stew — richer and spicier, cooked with Serranía mountain herbs. Order at Restaurante Pedro Romero."
-      },
-      {
-        name: "Grazalema cheese",
-        type: "Artisan cheese",
-        description: "Sierra de Grazalema produces exceptional raw-milk sheep and goat cheeses. Buy from village shops or Ronda market."
-      },
-      {
-        name: "Migas serranas",
-        type: "Mountain breakfast",
-        description: "Breadcrumbs fried with chorizo, bacon and peppers — hearty mountain breakfast. Fuel for cycling!"
+        name: "Restaurante Pedro Romero",
+        type: "Traditional restaurant",
+        description: "Named after Ronda's most famous bullfighter, opposite the bullring. Best rabo de toro in Ronda.",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Restaurante+Pedro+Romero+Ronda"
       },
       {
         name: "Setenil cave cafés",
         type: "Unique experience",
-        description: "Have coffee or tapas at a bar literally built inside a cave under the rock overhang. Unforgettable."
+        description: "Have coffee or tapas at a bar literally built inside a cave under the rock overhang. The main calle is lined with them.",
+        duration: "~45 min",
+        mapsLink: "https://maps.google.com/?q=Calle+Cuevas+del+Sol+Setenil+de+las+Bodegas"
+      },
+      {
+        name: "La Tienda de la Abuela (Grazalema)",
+        type: "Local products",
+        description: "Tiny shop in Grazalema village selling the famous local cheeses, honey, and charcuterie. Perfect picnic supplies.",
+        duration: "~20 min",
+        mapsLink: "https://maps.google.com/?q=Grazalema+village+cheese+shop"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "Ronda Gorge Perimeter",
-          distance: "12 km",
-          difficulty: "moderate",
-          description: "Circuit around the old city along the rim of El Tajo gorge. Spectacular views with some short climbs.",
-          tag: "Scenic"
-        },
-        {
-          name: "Ronda to Setenil de las Bodegas",
-          distance: "40 km round trip",
-          difficulty: "moderate",
-          description: "Rolling hills through the Serranía de Ronda. Mix of descents into valleys and climbs out. Arrive in Setenil from above for the best rock-village views.",
-          tag: "Road"
-        },
-        {
-          name: "Sierra de Grazalema Puertos",
-          distance: "45 km loop",
-          difficulty: "hard",
-          description: "Serious mountain cycling through the natural park. Puerto de las Palomas (1,357m) and pine forests. Epic descents.",
-          tag: "Mountain"
-        }
-      ],
-      rentalNote: "Hotel has dedicated bicycle parking! Bike rental in Ronda at Ronda Cicloturismo."
-    }
+    ]
   },
   {
     id: 7,
@@ -680,6 +655,14 @@ export const DAYS = [
     color: "#4169E1",
     route: ["Ronda", "Caminito del Rey", "Torremolinos"],
     coordinates: { lat: 36.6212, lng: -4.5003 },
+    driving: {
+      segments: [
+        { from: "Ronda", to: "Caminito del Rey (El Chorro)", km: 55, time: "1h 00min" },
+        { from: "El Chorro", to: "Torremolinos", km: 60, time: "1h 00min" }
+      ],
+      totalKm: 115,
+      totalTime: "2h 00min"
+    },
     accommodation: {
       name: "Apartamentos María del Carmen",
       location: "Torremolinos",
@@ -708,56 +691,48 @@ export const DAYS = [
       {
         name: "Caminito del Rey 🎫",
         emoji: "🧗",
-        description: "The most spectacular walk in Spain — a narrow path pinned to sheer 300m cliffs in El Chorro gorge. Once the world's most dangerous path, now fully safe and maintained. BOOK IN ADVANCE!",
+        description: "The most spectacular walk in Spain — a narrow path pinned to sheer 300m cliffs in El Chorro gorge. Once the world's most dangerous path, now fully safe. BOOK IN ADVANCE!",
         category: "Adventure",
         mustBook: true,
-        bookingTip: "Book at caminitodelrey.info — popular slots sell out weeks ahead"
+        bookingTip: "Book at caminitodelrey.info — popular slots sell out weeks ahead",
+        duration: "4–5 hrs (incl. transfer)",
+        mapsLink: "https://maps.google.com/?q=Caminito+del+Rey+El+Chorro"
       },
       {
         name: "Embalse del Guadalhorce",
         emoji: "💧",
         description: "Three linked turquoise reservoirs at the foot of the Caminito. Stunning contrast of water and limestone cliffs.",
         category: "Nature",
-        mustBook: false
+        mustBook: false,
+        duration: "~30 min",
+        mapsLink: "https://maps.google.com/?q=Embalse+del+Guadalhorce+El+Chorro"
       },
       {
         name: "Playa de la Carihuela",
         emoji: "🐟",
-        description: "The best part of Torremolinos — old fishing village with authentic chiringuitos. Great seafood, away from the tourist strip.",
+        description: "The best part of Torremolinos — old fishing village with authentic chiringuitos and great seafood.",
         category: "Beach",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–3 hrs",
+        mapsLink: "https://maps.google.com/?q=Playa+de+la+Carihuela+Torremolinos"
       }
     ],
     food: [
       {
-        name: "Pack lunch for Caminito!",
-        type: "Essential tip",
-        description: "No food on the trail — bring water, energy bars, and snacks. The walk takes 3–4 hours. Buy supplies in El Chorro village or Ardales the night before."
+        name: "Restaurante El Roqueo",
+        type: "Seafood restaurant",
+        description: "Excellent fresh fish on La Carihuela beach. Celebrate the Caminito with grilled fish and local wine.",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Restaurante+El+Roqueo+Torremolinos"
       },
       {
-        name: "La Carihuela chiringuitos",
-        type: "Beach restaurants",
-        description: "Celebrate the Caminito with fresh fish at La Carihuela beach. Try Restaurante El Roqueo or Casa Juan for excellent grilled fish."
-      },
-      {
-        name: "Recovery dinner",
-        type: "Traditional",
-        description: "After the walk, a proper dinner at one of the beachfront restaurants. You'll be hungry!"
+        name: "Casa Juan Los Mellizos",
+        type: "Seafood restaurant",
+        description: "One of the best chiringuitos on La Carihuela — known for their superb fresh fish and seafood.",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Casa+Juan+Los+Mellizos+Torremolinos"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "El Chorro MTB Trails",
-          distance: "Various",
-          difficulty: "hard",
-          description: "The El Chorro area has excellent mountain biking around the reservoirs and gorge. Several marked trails for all levels. Best combined with the Caminito visit.",
-          tag: "MTB"
-        }
-      ],
-      rentalNote: "MTB rental available at El Chorro village."
-    }
+    ]
   },
   {
     id: 8,
@@ -768,6 +743,15 @@ export const DAYS = [
     color: "#9B59B6",
     route: ["Torremolinos", "Málaga"],
     coordinates: { lat: 36.7213, lng: -4.4214 },
+    driving: {
+      segments: [
+        { from: "Torremolinos", to: "Málaga city", km: 14, time: "20 min" },
+        { from: "Málaga city", to: "El Palo", km: 5, time: "10 min" },
+        { from: "El Palo", to: "Torremolinos", km: 19, time: "25 min" }
+      ],
+      totalKm: 38,
+      totalTime: "~55 min driving"
+    },
     accommodation: null,
     sameAccommodationAs: 7,
     reminders: [],
@@ -777,79 +761,70 @@ export const DAYS = [
         emoji: "🎨",
         description: "Málaga is Picasso's birthplace! The museum in Buenavista Palace holds 233 works. Don't miss his birthplace house (Casa Natal) nearby.",
         category: "Museum",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Museo+Picasso+Malaga"
       },
       {
         name: "Alcazaba de Málaga",
         emoji: "🏰",
         description: "Moorish fortress rising above the city — one of the best-preserved Alcazabas in Spain. Free on Sundays. Combine with the Teatro Romano at its base.",
         category: "Monument",
-        mustBook: false
+        mustBook: false,
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Alcazaba+de+Malaga"
       },
       {
         name: "El Palo Fishing Village",
         emoji: "🎣",
-        description: "5 km east of Málaga center — the authentic village where espetos were invented. The best espetos in the world are served here on the beach.",
+        description: "5 km east of Málaga center — the authentic village where espetos were invented. The best espetos in the world served here on the beach.",
         category: "Neighbourhood",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=El+Palo+Malaga"
       },
       {
         name: "Mercado de Atarazanas",
         emoji: "🏛️",
         description: "Stunning 19th-century market hall with magnificent stained glass. Sample local charcuterie, cheeses, and wines at bar counters inside.",
         category: "Market",
-        mustBook: false
+        mustBook: false,
+        duration: "~1 hr",
+        mapsLink: "https://maps.google.com/?q=Mercado+de+Atarazanas+Malaga"
       },
       {
         name: "Centro Pompidou Málaga",
         emoji: "🖼️",
         description: "Satellite of Paris's Centre Pompidou — contemporary art in a striking glass cube on the port. Less crowded than the French original.",
         category: "Museum",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Centre+Pompidou+Malaga"
       }
     ],
     food: [
       {
-        name: "Espetos at El Palo",
-        type: "The original",
-        description: "The ritual: sit on the beach at El Palo, order sardine espetos cooked in a traditional boat on the sand. Eat with local white wine. This is Málaga."
-      },
-      {
-        name: "Málaga sweet wines (Moscatel)",
-        type: "Local wines",
-        description: "Unique sweet wines made from sun-dried Muscatel grapes. Try at any wine bar — completely different to anything you've had before."
-      },
-      {
-        name: "Boquerones en vinagre",
-        type: "Málaga staple",
-        description: "Fresh anchovies marinated in white vinegar with garlic and parsley. Incredibly fresh in Málaga — order at any market bar."
-      },
-      {
         name: "El Pimpi",
         type: "Málaga institution",
-        description: "Most famous bar in Málaga — wine barrels signed by Antonio Banderas and celebrities, right next to the Alcazaba."
+        description: "Most famous bar in Málaga — wine barrels signed by Antonio Banderas, right next to the Alcazaba. Don't miss the Moscatel wine.",
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=El+Pimpi+Malaga"
+      },
+      {
+        name: "Espetos at El Palo beach",
+        type: "Beach restaurant",
+        description: "The ritual: sardine espetos cooked in a traditional boat on the sand at El Palo. Eat with local white wine. This IS Málaga.",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=El+Palo+chiringuito+Malaga"
+      },
+      {
+        name: "Mercado de Atarazanas tapas bars",
+        type: "Market bars",
+        description: "Grab a glass of Málaga wine and fresh boquerones en vinagre at the bar counters inside the market.",
+        duration: "~45 min",
+        mapsLink: "https://maps.google.com/?q=Mercado+de+Atarazanas+Malaga"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "Senda Litoral Coastal Path",
-          distance: "14 km one way",
-          difficulty: "easy",
-          description: "Dedicated coastal cycling path from Torremolinos to Málaga city. Flat, traffic-free, sea views the entire way. Perfect morning ride into the city.",
-          tag: "Coastal"
-        },
-        {
-          name: "Málaga Port & Centre Loop",
-          distance: "10 km",
-          difficulty: "easy",
-          description: "Cycle along the port promenade, past the Alcazaba, to El Palo fishing village and back.",
-          tag: "City"
-        }
-      ],
-      rentalNote: "Bike rental at Málaga Bike Tours near the port, or ride in from Torremolinos on the Senda Litoral."
-    }
+    ]
   },
   {
     id: 9,
@@ -860,6 +835,16 @@ export const DAYS = [
     color: "#E74C3C",
     route: ["Torremolinos", "Benalmádena", "Mijas", "Marbella"],
     coordinates: { lat: 36.6212, lng: -4.5003 },
+    driving: {
+      segments: [
+        { from: "Torremolinos", to: "Benalmádena", km: 8, time: "15 min" },
+        { from: "Benalmádena", to: "Mijas Pueblo", km: 15, time: "20 min" },
+        { from: "Mijas", to: "Marbella", km: 30, time: "40 min" },
+        { from: "Marbella", to: "Torremolinos", km: 50, time: "50 min" }
+      ],
+      totalKm: 103,
+      totalTime: "~2h 05min"
+    },
     accommodation: null,
     sameAccommodationAs: 7,
     reminders: [],
@@ -867,69 +852,56 @@ export const DAYS = [
       {
         name: "Mijas Pueblo",
         emoji: "🫏",
-        description: "Impossibly pretty white hilltop village with classic Andalusian streets, donkey taxis, and panoramic views over the Costa del Sol. 30 min from Torremolinos.",
+        description: "Impossibly pretty white hilltop village with classic Andalusian streets, donkey taxis, and panoramic views over the Costa del Sol.",
         category: "Village",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Mijas+Pueblo+Spain"
       },
       {
         name: "Benalmádena Cable Car",
         emoji: "🚠",
         description: "The Teleférico ascends 800m to Monte Calamorro for panoramic views of the Costa del Sol, Gibraltar, and Africa on clear days.",
         category: "Attraction",
-        mustBook: false
+        mustBook: false,
+        duration: "1–1.5 hrs",
+        mapsLink: "https://maps.google.com/?q=Teleferico+Benalmadena"
       },
       {
         name: "Marbella Old Town",
         emoji: "🌺",
         description: "Behind the glamour of Puerto Banús lies a genuinely beautiful 16th-century old town. Orange-blossom plazas, white walls, excellent seafood.",
         category: "Town",
-        mustBook: false
+        mustBook: false,
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Marbella+Old+Town"
       },
       {
         name: "Puerto Banús",
         emoji: "⛵",
-        description: "Marbella's famous marina — superyachts, Ferraris, designer shops. Fun to walk around even just window-shopping. Great tapas in the port area.",
+        description: "Marbella's famous marina — superyachts, Ferraris, designer shops. Fun to walk around even just window-shopping.",
         category: "Marina",
-        mustBook: false
+        mustBook: false,
+        duration: "~1 hr",
+        mapsLink: "https://maps.google.com/?q=Puerto+Banus+Marbella"
       }
     ],
     food: [
       {
-        name: "Marbella old town restaurants",
+        name: "Restaurante El Mirlo Blanco (Mijas)",
+        type: "Spanish restaurant",
+        description: "Charming restaurant in Mijas village with panoramic terrace views — excellent grilled fish and local specialties.",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Restaurante+El+Mirlo+Blanco+Mijas"
+      },
+      {
+        name: "Marbella Old Town restaurants",
         type: "Spanish",
-        description: "Avoid overpriced port restaurants — go two streets back in the old town for excellent Spanish food at half the price. Plaza de los Naranjos has great terraces."
-      },
-      {
-        name: "Fresh orange juice",
-        type: "Local produce",
-        description: "Andalusia grows the best oranges in Europe — freshly squeezed juice is everywhere and cheap. A daily ritual."
-      },
-      {
-        name: "Ajoblanco",
-        type: "Málaga specialty",
-        description: "White gazpacho made with almonds and garlic — a Málaga original, smoother and nuttier than red gazpacho. Available all along the Costa."
+        description: "Go two streets back from the port for excellent Spanish food at fair prices. Plaza de los Naranjos has great terraces.",
+        duration: "1.5–2 hrs",
+        mapsLink: "https://maps.google.com/?q=Plaza+de+los+Naranjos+Marbella"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "Costa del Sol Bike Path",
-          distance: "30 km Torremolinos → Fuengirola",
-          difficulty: "easy",
-          description: "Dedicated seafront cycling path running along the entire Costa del Sol. Completely flat, traffic-free, and scenic. World-class urban cycling infrastructure.",
-          tag: "Coastal"
-        },
-        {
-          name: "Mijas Mountain Ascent",
-          distance: "20 km round trip",
-          difficulty: "hard",
-          description: "Climb from the coast up to Mijas village — 450m of elevation gain. Epic views from the top. Follow the old mule track.",
-          tag: "Climb"
-        }
-      ],
-      rentalNote: "Use the Senda Litoral coastal path from Torremolinos — bikes available at various rental points along the route."
-    }
+    ]
   },
   {
     id: 10,
@@ -940,6 +912,13 @@ export const DAYS = [
     color: "#7f8c8d",
     route: ["Torremolinos", "Málaga Airport"],
     coordinates: { lat: 36.6212, lng: -4.5003 },
+    driving: {
+      segments: [
+        { from: "Torremolinos", to: "Málaga Airport", km: 13, time: "20 min" }
+      ],
+      totalKm: 13,
+      totalTime: "20 min"
+    },
     accommodation: null,
     sameAccommodationAs: 7,
     reminders: [],
@@ -949,41 +928,29 @@ export const DAYS = [
         emoji: "🌅",
         description: "Last sunrise stroll along La Carihuela beach. The Costa del Sol in the morning light is unforgettable.",
         category: "Beach",
-        mustBook: false
+        mustBook: false,
+        duration: "~45 min",
+        mapsLink: "https://maps.google.com/?q=Playa+de+la+Carihuela+Torremolinos"
       },
       {
         name: "Souvenir shopping",
         emoji: "🛍️",
         description: "Last chance: local olive oil, Málaga sweet wine, Ronda ceramics, Sierra Nevada honey. Torremolinos shops open early on Sunday.",
         category: "Shopping",
-        mustBook: false
+        mustBook: false,
+        duration: "~1 hr",
+        mapsLink: "https://maps.google.com/?q=Torremolinos+town+center"
       }
     ],
     food: [
       {
-        name: "Tostada con tomate y aceite",
-        type: "Spanish breakfast",
-        description: "The perfect send-off — toasted bread rubbed with fresh tomato, drizzled with extra-virgin olive oil, sprinkled with sea salt. Order at any café."
-      },
-      {
-        name: "Café con leche",
-        type: "Breakfast",
-        description: "A classic Spanish coffee breakfast. Town cafés are much better than the airport — enjoy your last one before heading to the flight."
+        name: "Last breakfast — Tostada con tomate",
+        type: "Spanish breakfast café",
+        description: "The perfect send-off — toasted bread with fresh tomato and olive oil. Order at any local café before heading to the airport.",
+        duration: "~45 min",
+        mapsLink: "https://maps.google.com/?q=cafes+Torremolinos"
       }
-    ],
-    cycling: {
-      available: true,
-      routes: [
-        {
-          name: "Morning Coastal Ride",
-          distance: "10 km",
-          difficulty: "easy",
-          description: "A final morning ride along the beach path before packing up. Torremolinos to Benalmádena and back — flat, fresh sea air, perfect final memory.",
-          tag: "Easy"
-        }
-      ],
-      rentalNote: "Return rental bikes before checkout at 11:00."
-    }
+    ]
   }
 ];
 
@@ -999,15 +966,16 @@ export const BUDGET = {
       { label: "Apartamentos María del Carmen (Torremolinos)", nights: 4, cost: 237.00 }
     ]
   },
-  parking: {
-    total: 72.00,
-    notes: "Total estimated parking in accommodations"
-  },
-  car: {
-    total: 280.00,
-    notes: "10-day rental car"
-  },
+  parking: { total: 72.00, notes: "Total estimated parking in accommodations" },
+  car: { total: 280.00, notes: "10-day rental car" },
   grandTotal: 1066.27
+};
+
+export const DRIVING_TOTALS = {
+  totalKm: 957,
+  totalDrivingTime: "~14h 30min across 10 days",
+  longestDay: { day: 6, km: 193, route: "Sevilla → Grazalema → Setenil → Ronda" },
+  shortestDay: { day: 10, km: 13, route: "Torremolinos → Málaga Airport" }
 };
 
 export const TRIP_REMINDERS = [

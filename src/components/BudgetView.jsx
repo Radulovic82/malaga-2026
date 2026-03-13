@@ -1,4 +1,4 @@
-import { BUDGET } from '../data/tripData'
+import { BUDGET, DRIVING_TOTALS, DAYS } from '../data/tripData'
 
 const CAR_ICON = (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -25,7 +25,7 @@ export default function BudgetView() {
   const perPersonTotal = BUDGET.grandTotal / 2
 
   return (
-    <div>
+    <div className="budget-root">
       {/* Grand total card */}
       <div className="budget-summary">
         <div className="budget-total-label">Total Trip Budget</div>
@@ -134,6 +134,66 @@ export default function BudgetView() {
               </span>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Driving summary */}
+      <div className="budget-section">
+        <div className="budget-section-title">🚗 Total Driving Distance</div>
+        <div style={{
+          background: 'var(--color-surface)', borderRadius: 12,
+          border: '1px solid var(--color-border-light)', overflow: 'hidden'
+        }}>
+          <div style={{
+            background: 'linear-gradient(135deg, #3730a3, #1d4ed8)',
+            color: 'white', padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+          }}>
+            <div>
+              <div style={{ fontSize: 12, opacity: 0.8, textTransform: 'uppercase', letterSpacing: '0.6px', fontWeight: 600 }}>
+                Full trip distance
+              </div>
+              <div style={{ fontSize: 32, fontWeight: 800, letterSpacing: '-1px', marginTop: 2 }}>
+                ~{DRIVING_TOTALS.totalKm} km
+              </div>
+            </div>
+            <div style={{ textAlign: 'right', opacity: 0.9 }}>
+              <div style={{ fontSize: 12 }}>Total driving time</div>
+              <div style={{ fontSize: 18, fontWeight: 700, marginTop: 2 }}>{DRIVING_TOTALS.totalDrivingTime}</div>
+            </div>
+          </div>
+          {DAYS.filter(d => d.driving).map(day => (
+            <div key={day.id} style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              padding: '9px 14px', borderBottom: '1px solid var(--color-border-light)',
+              fontSize: 13
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{
+                  width: 24, height: 24, borderRadius: 6, background: day.color,
+                  color: 'white', fontSize: 11, fontWeight: 700,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+                }}>{day.id}</span>
+                <span style={{ color: 'var(--color-text)', flex: 1 }}>
+                  {day.driving.segments[0]?.from} → {day.driving.segments[day.driving.segments.length - 1]?.to}
+                  {day.driving.optional && <span style={{ fontSize: 10, color: 'var(--color-text-muted)', marginLeft: 4 }}>(optional)</span>}
+                </span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                <span style={{ color: 'var(--color-text-muted)', fontSize: 12 }}>{day.driving.totalTime}</span>
+                <span style={{ fontWeight: 700, color: '#3730a3', minWidth: 52, textAlign: 'right' }}>
+                  {day.driving.totalKm} km
+                </span>
+              </div>
+            </div>
+          ))}
+          <div style={{
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            padding: '10px 14px', background: 'var(--color-surface-elevated)'
+          }}>
+            <span style={{ fontSize: 13, fontWeight: 700 }}>
+              🏆 Longest day: Day {DRIVING_TOTALS.longestDay.day} ({DRIVING_TOTALS.longestDay.km} km)
+            </span>
+          </div>
         </div>
       </div>
 

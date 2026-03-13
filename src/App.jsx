@@ -1,18 +1,37 @@
 import { useState } from 'react'
-import { DAYS } from './data/tripData'
+import { DAYS, TRIP_REMINDERS } from './data/tripData'
 import MapView from './components/MapView'
 import DaysList from './components/DaysList'
 import DayDetail from './components/DayDetail'
 import RemindersView from './components/RemindersView'
 import BudgetView from './components/BudgetView'
 import BottomNav from './components/BottomNav'
-import { TRIP_REMINDERS } from './data/tripData'
+
+function getAccommodation(day) {
+  if (day.accommodation) return day.accommodation
+  if (day.sameAccommodationAs) {
+    const refDay = DAYS.find(d => d.id === day.sameAccommodationAs)
+    return refDay?.accommodation || null
+  }
+  return null
+}
+
+function DesktopPlaceholder() {
+  return (
+    <div className="desktop-placeholder">
+      <div className="desktop-placeholder-emoji">🗺️</div>
+      <h3>Select a day</h3>
+      <p>Click any day from the list to see full details — hotel info, attractions, food recommendations, and more.</p>
+    </div>
+  )
+}
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('days')
   const [selectedDayId, setSelectedDayId] = useState(null)
 
   const urgentCount = TRIP_REMINDERS.filter(r => r.urgent).length
+  const selectedDay = selectedDayId ? DAYS.find(d => d.id === selectedDayId) : null
 
   function handleDaySelect(dayId) {
     setSelectedDayId(dayId)
@@ -23,26 +42,13 @@ export default function App() {
     setSelectedDayId(null)
   }
 
-  const selectedDay = selectedDayId ? DAYS.find(d => d.id === selectedDayId) : null
-
-  // Get accommodation for display (handles same-as-previous-day cases)
-  function getAccommodation(day) {
-    if (day.accommodation) return day.accommodation
-    if (day.sameAccommodationAs) {
-      const refDay = DAYS.find(d => d.id === day.sameAccommodationAs)
-      return refDay?.accommodation || null
-    }
-    return null
-  }
-
   return (
     <div className="app-shell">
-      {/* Header */}
       <header className="app-header">
         <div className="app-header-inner">
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             {selectedDay && activeTab === 'days' && (
-              <button className="back-btn" onClick={handleBack} aria-label="Back to days list">
+              <button className="back-btn mobile-only" onClick={handleBack} aria-label="Back">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="15 18 9 12 15 6" />
                 </svg>
@@ -50,58 +56,83 @@ export default function App() {
             )}
             <div>
               <h1>
-                {selectedDay && activeTab === 'days'
-                  ? `Day ${selectedDay.id} — ${selectedDay.emoji}`
-                  : activeTab === 'map' ? '🗺️ Trip Map'
+                {activeTab === 'map' ? '🗺️ Trip Map'
                   : activeTab === 'reminders' ? '📋 Bookings & Reminders'
                   : activeTab === 'budget' ? '💶 Budget'
                   : '🌊 Málaga 2026'}
               </h1>
-              <div className="subtitle">
-                {selectedDay && activeTab === 'days'
-                  ? selectedDay.dayLabel
-                  : 'Mar 20–29, 2026 · Andalusia, Spain'}
-              </div>
+              <div className="subtitle">Mar 20–29, 2026 · Andalusia, Spain</div>
             </div>
           </div>
-          <div style={{ fontSize: 22 }}>
-            {activeTab === 'days' && !selectedDay && '🇪🇸'}
-          </div>
+          <span style={{ fontSize: 22 }}>🇪🇸</span>
         </div>
       </header>
 
-      {/* Main content */}
+      {/* Nav: bottom on mobile, top on desktop (CSS handles repositioning via order) */}
+      <BottomNav
+        activeTab={activeTab}
+        onTabChange={(tab) => {
+          setActiveTab(tab)
+          if (tab !== 'days') setSelectedDayId(null)
+        }}
+        urgentCount={urgentCount}
+      />
+
       <div className="main-content">
-        {/* Map view — always mounted to preserve state */}
-        <div className={`tab-view${activeTab !== 'map' ? ' hidden' : ''}`} style={{ padding: 0, overflow: 'hidden' }}>
-          <MapView onDaySelect={handleDaySelect} selectedDayId={selectedDayId} />
+
+        {/* MAP */}
+        <div className={`tab-view map-tab${activeTab !== 'map' ? ' hidden' : ''}`}>
+          <MapView onDaySelect={handleDaySelect} selectedDayId={selectedDayId} isActive={activeTab === 'map'} />
         </div>
 
-        {/* Days / Day Detail view */}
-        <div className={`tab-view${activeTab !== 'days' ? ' hidden' : ''}`}>
-          {selectedDay ? (
-            <DayDetail day={selectedDay} getAccommodation={getAccommodation} />
-          ) : (
-            <DaysList onDaySelect={handleDaySelect} selectedDayId={selectedDayId} getAccommodation={getAccommodation} />
-          )}
+        {/* DAYS
+            CSS class "has-detail" drives mobile show/hide.
+            On desktop, both panels are always visible via CSS grid (no inline styles needed). */}
+        <div className={`tab-view days-tab${activeTab !== 'days' ? ' hidden' : ''}`}>
+          <div className={`days-split${selectedDay ? ' has-detail' : ''}`}>
+
+            <div className="days-split-list">
+              <DaysList
+                onDaySelect={handleDaySelect}
+                selectedDayId={selectedDayId}
+                getAccommodation={getAccommodation}
+              />
+            </div>
+
+            <div className="days-split-detail">
+              {selectedDay ? (
+                <>
+                  <button className="mobile-back-inline" onClick={handleBack}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                    All days
+                  </button>
+                  <DayDetail day={selectedDay} getAccommodation={getAccommodation} />
+                </>
+              ) : (
+                <DesktopPlaceholder />
+              )}
+            </div>
+
+          </div>
         </div>
 
-        {/* Reminders view */}
+        {/* REMINDERS */}
         <div className={`tab-view${activeTab !== 'reminders' ? ' hidden' : ''}`}>
-          <RemindersView />
+          <div className="centered-view">
+            <RemindersView />
+          </div>
         </div>
 
-        {/* Budget view */}
+        {/* BUDGET */}
         <div className={`tab-view${activeTab !== 'budget' ? ' hidden' : ''}`}>
-          <BudgetView />
+          <div className="centered-view">
+            <BudgetView />
+          </div>
         </div>
-      </div>
 
-      {/* Bottom Navigation */}
-      <BottomNav activeTab={activeTab} onTabChange={(tab) => {
-        setActiveTab(tab)
-        if (tab !== 'days') setSelectedDayId(null)
-      }} urgentCount={urgentCount} />
+      </div>
     </div>
   )
 }

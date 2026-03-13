@@ -41,22 +41,39 @@ function createMarkerIcon(color, dayId) {
   })
 }
 
-function BoundsController() {
+function BoundsController({ isActive }) {
   const map = useMap()
   useEffect(() => {
-    const bounds = L.latLngBounds(routeCoords)
-    map.fitBounds(bounds, { padding: [50, 50] })
-  }, [map])
+    // Re-fit bounds whenever the map tab becomes active (handles display:none → visible)
+    if (isActive) {
+      map.invalidateSize()
+      map.fitBounds(L.latLngBounds(routeCoords), { padding: [60, 60] })
+    }
+  }, [isActive, map])
   return null
 }
 
-export default function MapView({ onDaySelect, selectedDayId }) {
+// Calls invalidateSize whenever the map tab becomes visible,
+// fixing the 0×0 size bug that happens when Leaflet renders inside display:none
+function MapResizer({ isActive }) {
+  const map = useMap()
+  useEffect(() => {
+    if (isActive) {
+      map.invalidateSize()
+    }
+  }, [isActive, map])
+  return null
+}
+
+const initialBounds = L.latLngBounds(routeCoords)
+
+export default function MapView({ onDaySelect, selectedDayId, isActive }) {
   return (
-    <div style={{ position: 'relative', width: '100%', height: 'calc(100dvh - 60px - 68px)' }}>
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <MapContainer
-        center={[37.2, -4.8]}
-        zoom={7}
-        style={{ width: '100%', height: '100%' }}
+        bounds={initialBounds}
+        boundsOptions={{ padding: [60, 60] }}
+        style={{ width: '100%', height: '100%', minHeight: 300 }}
         zoomControl={false}
         tap={false}
       >
@@ -64,7 +81,8 @@ export default function MapView({ onDaySelect, selectedDayId }) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <BoundsController />
+        <BoundsController isActive={isActive} />
+        <MapResizer isActive={isActive} />
 
         {/* Route polyline */}
         <Polyline

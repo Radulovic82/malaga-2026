@@ -5,7 +5,9 @@
       "Bash(sudo npm:*)",
       "Bash(npm cache:*)",
       "Bash(npm run:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)"
     ]
   }
 }

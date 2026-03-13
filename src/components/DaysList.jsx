@@ -14,7 +14,7 @@ export default function DaysList({ onDaySelect, getAccommodation }) {
       {/* Trip banner */}
       <div className="trip-header-banner">
         <h2>Andalusia Road Trip 🇪🇸</h2>
-        <p>Filip & wife · March 20–29, 2026</p>
+        <p>Filip & Iva · March 20–29, 2026</p>
         <div className="trip-stats">
           <div className="trip-stat">
             <div className="trip-stat-value">10</div>

@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react'
+import { doc, onSnapshot, setDoc } from 'firebase/firestore'
+import { db } from '../firebase'
 import { TRIP_REMINDERS, DAYS } from '../data/tripData'
 
-const STORAGE_KEY = 'malaga2026_checked'
-
-function getChecked() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-  } catch {
-    return []
-  }
-}
+const CHECKLIST_REF = doc(db, 'bookings', 'checklist')
 
 function getDayLabel(dayId) {
   const day = DAYS.find(d => d.id === dayId)
@@ -17,16 +11,20 @@ function getDayLabel(dayId) {
 }
 
 export default function RemindersView() {
-  const [checked, setChecked] = useState(getChecked)
+  const [checked, setChecked] = useState([])
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(checked))
-  }, [checked])
+    const unsubscribe = onSnapshot(CHECKLIST_REF, snapshot => {
+      setChecked(snapshot.exists() ? (snapshot.data().checked ?? []) : [])
+    })
+    return unsubscribe
+  }, [])
 
   function toggleCheck(id) {
-    setChecked(prev =>
-      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
-    )
+    const next = checked.includes(id)
+      ? checked.filter(x => x !== id)
+      : [...checked, id]
+    setDoc(CHECKLIST_REF, { checked: next })
   }
 
   const urgent = TRIP_REMINDERS.filter(r => r.urgent)
@@ -198,7 +196,7 @@ export default function RemindersView() {
       )}
 
       <div style={{ padding: '4px 16px 8px', fontSize: 11, color: 'var(--color-text-muted)', textAlign: 'center' }}>
-        Tap any item to mark as done · Progress is saved
+        Tap any item to mark as done · Synced in real time
       </div>
     </div>
   )

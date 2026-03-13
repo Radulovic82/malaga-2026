@@ -1,31 +1,11 @@
-import { useState, useEffect } from 'react'
-import { doc, onSnapshot, setDoc } from 'firebase/firestore'
-import { db } from '../firebase'
 import { TRIP_REMINDERS, DAYS } from '../data/tripData'
-
-const CHECKLIST_REF = doc(db, 'bookings', 'checklist')
 
 function getDayLabel(dayId) {
   const day = DAYS.find(d => d.id === dayId)
   return day ? `Day ${day.id} · ${day.date.slice(5).replace('-', '/')}` : ''
 }
 
-export default function RemindersView() {
-  const [checked, setChecked] = useState([])
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(CHECKLIST_REF, snapshot => {
-      setChecked(snapshot.exists() ? (snapshot.data().checked ?? []) : [])
-    })
-    return unsubscribe
-  }, [])
-
-  function toggleCheck(id) {
-    const next = checked.includes(id)
-      ? checked.filter(x => x !== id)
-      : [...checked, id]
-    setDoc(CHECKLIST_REF, { checked: next })
-  }
+export default function RemindersView({ checked, onToggle }) {
 
   const urgent = TRIP_REMINDERS.filter(r => r.urgent)
   const normal = TRIP_REMINDERS.filter(r => !r.urgent)
@@ -78,11 +58,11 @@ export default function RemindersView() {
               <div className="reminder-card-inner">
                 <div
                   className={`reminder-check${isChecked ? ' checked' : ' urgent-check'}`}
-                  onClick={() => toggleCheck(r.id)}
+                  onClick={() => onToggle(r.id)}
                   role="checkbox"
                   aria-checked={isChecked}
                   tabIndex={0}
-                  onKeyDown={e => e.key === 'Enter' && toggleCheck(r.id)}
+                  onKeyDown={e => e.key === 'Enter' && onToggle(r.id)}
                 >
                   {isChecked && (
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -143,11 +123,11 @@ export default function RemindersView() {
               <div className="reminder-card-inner">
                 <div
                   className={`reminder-check${isChecked ? ' checked' : ''}`}
-                  onClick={() => toggleCheck(r.id)}
+                  onClick={() => onToggle(r.id)}
                   role="checkbox"
                   aria-checked={isChecked}
                   tabIndex={0}
-                  onKeyDown={e => e.key === 'Enter' && toggleCheck(r.id)}
+                  onKeyDown={e => e.key === 'Enter' && onToggle(r.id)}
                 >
                   {isChecked && (
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">

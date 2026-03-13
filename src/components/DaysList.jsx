@@ -6,7 +6,7 @@ function getTodayDayId() {
   return day?.id || null
 }
 
-export default function DaysList({ onDaySelect, getAccommodation }) {
+export default function DaysList({ onDaySelect, getAccommodation, checked = [] }) {
   const todayDayId = getTodayDayId()
 
   return (
@@ -48,7 +48,9 @@ export default function DaysList({ onDaySelect, getAccommodation }) {
           const accomm = getAccommodation(day)
           const isToday = day.id === todayDayId
           const hasBike = day.cycling?.available
-          const hasReminder = day.reminders?.length > 0
+          const dayReminders = day.reminders ?? []
+          const hasReminder = dayReminders.length > 0
+          const allBooked = hasReminder && dayReminders.every(r => checked.includes(r.id))
 
           return (
             <div
@@ -89,7 +91,9 @@ export default function DaysList({ onDaySelect, getAccommodation }) {
                       <span className="tag tag-bike">🚴 Cycling</span>
                     )}
                     {hasReminder && (
-                      <span className="tag tag-reminder">⚠️ Book</span>
+                      <span className={`tag ${allBooked ? 'tag-booked' : 'tag-reminder'}`}>
+                        {allBooked ? '✅ Booked' : '⚠️ Book'}
+                      </span>
                     )}
                     {accomm?.amenities?.some(a => a.includes('Spa')) && (
                       <span className="tag" style={{ background: '#f3e8ff', color: '#7c3aed', fontSize: 10, padding: '2px 6px', borderRadius: 10, fontWeight: 500 }}>💆 Spa</span>

@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { doc, onSnapshot, setDoc } from 'firebase/firestore'
+import { db } from './firebase'
 import { DAYS, TRIP_REMINDERS } from './data/tripData'
 import MapView from './components/MapView'
 import DaysList from './components/DaysList'
@@ -6,6 +8,8 @@ import DayDetail from './components/DayDetail'
 import RemindersView from './components/RemindersView'
 import BudgetView from './components/BudgetView'
 import BottomNav from './components/BottomNav'
+
+const CHECKLIST_REF = doc(db, 'bookings', 'checklist')
 
 function getAccommodation(day) {
   if (day.accommodation) return day.accommodation
@@ -29,8 +33,23 @@ function DesktopPlaceholder() {
 export default function App() {
   const [activeTab, setActiveTab] = useState('days')
   const [selectedDayId, setSelectedDayId] = useState(null)
+  const [checked, setChecked] = useState([])
 
-  const urgentCount = TRIP_REMINDERS.filter(r => r.urgent).length
+  useEffect(() => {
+    const unsubscribe = onSnapshot(CHECKLIST_REF, snapshot => {
+      setChecked(snapshot.exists() ? (snapshot.data().checked ?? []) : [])
+    })
+    return unsubscribe
+  }, [])
+
+  function toggleCheck(id) {
+    const next = checked.includes(id)
+      ? checked.filter(x => x !== id)
+      : [...checked, id]
+    setDoc(CHECKLIST_REF, { checked: next })
+  }
+
+  const urgentCount = TRIP_REMINDERS.filter(r => r.urgent && !checked.includes(r.id)).length
   const selectedDay = selectedDayId ? DAYS.find(d => d.id === selectedDayId) : null
 
   function handleDaySelect(dayId) {
@@ -96,6 +115,7 @@ export default function App() {
                 onDaySelect={handleDaySelect}
                 selectedDayId={selectedDayId}
                 getAccommodation={getAccommodation}
+                checked={checked}
               />
             </div>
 
@@ -121,7 +141,7 @@ export default function App() {
         {/* REMINDERS */}
         <div className={`tab-view${activeTab !== 'reminders' ? ' hidden' : ''}`}>
           <div className="centered-view">
-            <RemindersView />
+            <RemindersView checked={checked} onToggle={toggleCheck} />
           </div>
         </div>
 
